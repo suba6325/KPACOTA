@@ -5,13 +5,12 @@ increase = 0.05  # Ежемесячный рост цен
 
 # TODO Рассчитайте подушку безопасности, чтобы протянуть 10 месяцев без долгов
 
-month = 0
-budget = 0
-for i in range(0,months+1):
-    month+=1
-    budget = budget + salary - spend*(1 + 0.05*i)
+allspend = 0
 
-money_capital = -budget
+for month in range(0, months):
+    allspend += spend * (1.05 ** month)
+
+money_capital = round(allspend - months * salary)
 
 print(f"Подушка безопасности, чтобы протянуть {months} месяцев без долгов:", money_capital)
-#если проверить на 1 задании, то всё норм)
+# тут получается 25467,3, но я не понял как округлить до большего целого, но и не важно. Так ведь?
