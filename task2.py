@@ -1,9 +1,9 @@
 # TODO Напишите функцию find_common_participants
 
-def find_common_participants(participants_first_group, participants_second_group, seporator=','):
+def find_common_participants(participants_first_group, participants_second_group, separator=','):
     list_similar = []
-    for i, surname_1 in enumerate(participants_first_group.split(seporator)):
-        for k, surname_2 in enumerate(participants_second_group.split(seporator)):
+    for surname_1 in participants_first_group.split(separator):
+        for surname_2 in participants_second_group.split(separator):
             if surname_1 == surname_2:
                 list_similar.append(surname_1)
     return list_similar
