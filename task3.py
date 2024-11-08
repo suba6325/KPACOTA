@@ -1,23 +1,22 @@
 # TODO  Напишите функцию count_letters
-from decimal import *
+from decimal import Decimal
 
 
 def count_letters(text):
     new_main_str = list(text)
-    letters = set(char.lower() for char in new_main_str if char.isalpha())
-    sorted_letters = sorted(letters)
+    letters = list(char.lower() for char in new_main_str if char.isalpha())
     count_of_every_letter = []
     text_dictionary = {}
 
-    for i in range(len(sorted_letters)):
+    for i, letter in enumerate(letters):
         count = 0
-        for k in range(len(new_main_str)):
-            if new_main_str[k] == sorted_letters[i]:
+        for k, symbol in enumerate(new_main_str):
+            if symbol == letter:
                 count += 1
         count_of_every_letter.append(count)
 
-    for i in range(len(sorted_letters)):
-        text_dictionary[sorted_letters[i]] = count_of_every_letter[i]
+    for i in range(len(letters)):
+        text_dictionary[letters[i]] = count_of_every_letter[i]
     return text_dictionary
 
 
@@ -28,7 +27,7 @@ def calculate_frequency(dictionary):
     counts = list(dictionary.values())
     sum_letters = sum(counts)
     for i in range(len(letters)):
-        new_dict[letters[i]] = Decimal(counts[i]/sum_letters)
+        new_dict[letters[i]] = Decimal(counts[i] / sum_letters)
         new_dict[letters[i]] = new_dict[letters[i]].quantize(Decimal("1.00"))
     return new_dict
 
@@ -71,6 +70,6 @@ main_str = """
 
 # TODO Распечатайте в столбик букву и её частоту в тексте
 
-for i in range(len(calculate_frequency(count_letters(main_str)).keys())):
-    print(list(calculate_frequency(count_letters(main_str)).keys())[i], ': ',
-          list(calculate_frequency(count_letters(main_str)).values())[i], sep='')
+
+for key, value in calculate_frequency(count_letters(main_str)).items():
+    print(f"{key}: {value}", sep='\n')
