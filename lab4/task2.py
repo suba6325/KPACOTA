@@ -17,6 +17,8 @@ def task(filepath, separator=',', line_separator='\n'):
             data.append(row)
 
     json_data = json.dumps(data, indent=4)
+    with open(OUTPUT_FILENAME, "w") as f:
+        json.dump(json_data, f)
 
     return json_data
 
@@ -24,7 +26,7 @@ def task(filepath, separator=',', line_separator='\n'):
 print(task(INPUT_FILENAME))
 if __name__ == '__main__':
     # Нужно для проверки
-    task()
+    task(INPUT_FILENAME)
 
     with open(OUTPUT_FILENAME) as output_f:
         for line in output_f:
