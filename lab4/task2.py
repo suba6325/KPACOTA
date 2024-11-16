@@ -15,19 +15,15 @@ def task(filepath, separator=',', line_separator='\n'):
         data = []
         for row in reader:
             data.append(row)
-
-    json_data = json.dumps(data, indent=4)
     with open(OUTPUT_FILENAME, "w") as f:
-        json.dump(json_data, f)
+        json.dump(data, f, indent=4)
+    return data
 
-    return json_data
 
-
-print(task(INPUT_FILENAME))
 if __name__ == '__main__':
     # Нужно для проверки
     task(INPUT_FILENAME)
 
     with open(OUTPUT_FILENAME) as output_f:
         for line in output_f:
-            print(line, end="")
+            print(line, end="\n")
